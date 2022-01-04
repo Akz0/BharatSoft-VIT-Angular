@@ -1,0 +1,8 @@
+.courses-field-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.courses-field-container div mat-form-field {
+  width: 300px;
+}
