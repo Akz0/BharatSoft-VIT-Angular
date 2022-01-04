@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="app-header">
+    <div><a class="title">VIT Course Planner</a></div>
+    <span class="spacer"></span>
+    <span *ngIf="!(isLoggedIn$ |async )" class="nav-tool-items">
+        <a mat-button mat-raised-button href="/auth/register">Register</a>&nbsp;
+        <a mat-button mat-raised-button color="accent" href="/auth/login">Log in</a>
+    </span>
+    <div *ngIf="(isLoggedIn$ | async)" class="nav-tool-items">
+        <a mat-button mat-raised-button>Hello {{(name$|async)}}</a> &nbsp;
+        <a mat-button mat-raised-button color="accent" (click)="logout()">Logout</a>
+    </div>
+</mat-toolbar>

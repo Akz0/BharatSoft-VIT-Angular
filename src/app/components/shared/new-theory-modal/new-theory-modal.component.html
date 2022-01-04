@@ -1,0 +1,163 @@
+<h2 mat-dialog-title style="text-align:center">Add New Theory Course</h2>
+<mat-dialog-content>
+    <div *ngIf="!(isLoading$ | async)">
+        <form [formGroup]="theoryCourse" (ngSubmit)="addTheoryCourse()">
+            <div class="courses-field-container">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label> Course Code</mat-label>
+                        <input matInput type="text" formControlName="courseCode">
+                        <mat-error
+                            *ngIf="theoryCourse.get('courseCode').errors && theoryCourse.get('courseCode').errors.required">
+                            Course Code Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label> Course Name </mat-label>
+                        <input matInput type="text" formControlName="courseName">
+                        <mat-error
+                            *ngIf="theoryCourse.get('courseName').errors  && theoryCourse.get('courseName').errors.required">
+                            Course Name Required </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Adademic Year </mat-label>
+                        <input matInput type="text" formControlName="academicYear">
+                        <mat-error
+                            *ngIf="theoryCourse.get('academicYear').errors && theoryCourse.get('academicYear').errors.required">
+                            Adademic Year Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Pattern </mat-label>
+                        <input matInput type="text" formControlName="pattern">
+                        <mat-error
+                            *ngIf="theoryCourse.get('pattern').errors && theoryCourse.get('pattern').errors.required">
+                            Adademic Year Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Faculty </mat-label>
+                        <input matInput type="text" formControlName="faculty">
+                        <mat-error
+                            *ngIf="theoryCourse.get('faculty').errors && theoryCourse.get('faculty').errors.required">
+                            Faculty Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Department </mat-label>
+                        <input matInput type="text" formControlName="department">
+                        <mat-error
+                            *ngIf="theoryCourse.get('department').errors && theoryCourse.get('department').errors.required">
+                            Department Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Programme </mat-label>
+                        <input matInput type="text" formControlName="programme">
+                        <mat-error
+                            *ngIf="theoryCourse.get('programme').errors && theoryCourse.get('programme').errors.required">
+                            Programme Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Credits </mat-label>
+                        <input matInput type="text" formControlName="credits">
+                        <mat-error
+                            *ngIf="theoryCourse.get('credits').errors && theoryCourse.get('credits').errors.required">
+                            Credits Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Semester </mat-label>
+                        <input matInput type="text" formControlName="semester">
+                        <mat-error
+                            *ngIf="theoryCourse.get('semester').errors && theoryCourse.get('semester').errors.required">
+                            Semester Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Division </mat-label>
+                        <input matInput type="text" formControlName="division">
+                        <mat-error
+                            *ngIf="theoryCourse.get('division').errors && theoryCourse.get('division').errors.required">
+                            Division Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Course Teacher </mat-label>
+                        <input matInput type="text" formControlName="courseTeacher">
+                        <mat-error
+                            *ngIf="theoryCourse.get('courseTeacher').errors && theoryCourse.get('courseTeacher').errors.required">
+                            Course Teacher Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Date WEF </mat-label>
+                        <input matInput type="text" formControlName="dateWEF">
+                        <mat-error
+                            *ngIf="theoryCourse.get('dateWEF').errors && theoryCourse.get('dateWEF').errors.required">
+                            Date WEF Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> LTP </mat-label>
+                        <input matInput type="text" formControlName="LTP">
+                        <mat-error *ngIf="theoryCourse.get('LTP').errors && theoryCourse.get('LTP').errors.required">
+                            LTP Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    <div *ngIf="(isLoading$ | async)">
+        <mat-icon>
+            <mat-progress-spinner></mat-progress-spinner>
+        </mat-icon>
+    </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align='end'>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button cdkFocusInitial color="accent" [disabled]="!theoryCourse.valid"
+        (click)="addTheoryCourse()">Add</button>
+</mat-dialog-actions>

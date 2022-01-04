@@ -1,0 +1,21 @@
+<div class="home-container">
+    <div class="top-bar">
+        <div class="top-bar-actions">
+            <button (click)="openNewPracticalDialog()" mat-stroked-button color="primary">
+                <mat-icon>add</mat-icon>
+                New Practical Course
+            </button>
+
+            <button (click)="openNewTheoryDialog()" mat-stroked-button color="primary">
+                <mat-icon>add</mat-icon>
+                New Theory Course
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="coursesList" class="courses-container">
+        <div *ngFor="let item of coursesList" class="course">
+            <app-course-card [course]="item">Hello</app-course-card>
+        </div>
+    </div>
+</div>

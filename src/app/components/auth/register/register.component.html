@@ -1,0 +1,53 @@
+<div class="register-wrapper">
+    <h2 class="title">Register</h2>
+    <form [formGroup]="register" (ngSubmit)="registerSubmit()" autocomplete="off">
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> Name </mat-label>
+                <input matInput type="text" formControlName="name">
+                <mat-error *ngIf="register.get('name').errors"> Name Required </mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> Email</mat-label>
+                <input matInput type="email" formControlName="email">
+                <mat-error *ngIf="register.get('email').errors && register.get('email').errors.required"> Email Required
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> Password </mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error *ngIf="register.get('password').errors && register.get('password').errors.minLength">
+                    Password Lenght >=8</mat-error>
+
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> Role </mat-label>
+                <input matInput type="text" formControlName="role">
+                <mat-error *ngIf="register.get('role').errors"> Role Required </mat-error>
+            </mat-form-field>
+        </p>
+
+        <button mat-raised-button type="submit" [disabled]="!register.valid" color="accent">Register</button>
+
+        <p style="margin-top: 20px;">
+            <mat-icon *ngIf="authLoading$ | async">
+                <mat-spinner color="primary" diameter="20"></mat-spinner>
+            </mat-icon>
+        </p>
+
+        <p style="margin-top: 20px; color:#D74545;" *ngIf="!registerResponse && registerMessage">
+            {{registerMessage}}
+        </p>
+
+        <p style="margin-top: 20px;color: #4E9A51;" *ngIf="registerResponse && registerMessage">
+            {{registerMessage}}
+        </p>
+    </form>
+
+</div>

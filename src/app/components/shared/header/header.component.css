@@ -1,0 +1,16 @@
+.spacer {
+  flex: 1 1 0%;
+}
+
+.title,
+.title:link,
+.title:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-tool-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

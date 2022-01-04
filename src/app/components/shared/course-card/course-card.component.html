@@ -1,0 +1,42 @@
+<mat-card class="course-card">
+    <mat-card-title>{{course.courseName}}</mat-card-title>
+    <mat-card-subtitle>{{course.type}}</mat-card-subtitle>
+    <mat-card-content>
+        <div class="course-card__details--row">
+            <div class="course-card__details--key">Course Code</div>
+            <div class="course-card__details--value">{{course.courseCode}}</div>
+        </div>
+
+        <div class="course-card__details--row">
+            <div class="course-card__details--key">Department</div>
+            <div class="course-card__details--value">{{course.department}}</div>
+        </div>
+
+        <div class="course-card__details--row">
+            <div class="course-card__details--key">Pattern</div>
+            <div class="course-card__details--value">{{course.pattern}}</div>
+        </div>
+
+        <div class="course-card__details--row">
+            <div class="course-card__details--key">Academic Year</div>
+            <div class="course-card__details--value">{{course.academicYear}}</div>
+        </div>
+
+        <div class="course-card__details--row">
+            <div class="course-card__details--key">Semester</div>
+            <div class="course-card__details--value">{{course.semester}}</div>
+        </div>
+
+        <div class="course-card__details--row">
+            <div class="course-card__details--key">Division</div>
+            <div class="course-card__details--value">{{course.division}}</div>
+        </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="course-card__actions">
+            <button mat-raised-button>Details</button>
+            <button mat-button color="warn">Delete</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

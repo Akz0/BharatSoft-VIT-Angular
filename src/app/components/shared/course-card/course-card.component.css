@@ -1,0 +1,30 @@
+.course-card {
+  max-width: 300px;
+  min-width: 300px;
+}
+
+.course-card__details--row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+  align-items: flex-start;
+  /* padding: 5px 0; */
+  padding-left: 3px;
+  margin-bottom: 5px;
+}
+.course-card__details--key {
+  flex: 0 0 30%;
+  color: rgb(136, 136, 136);
+}
+
+.course-card__details--value {
+  flex: 0 0 60%;
+  font-weight: bold;
+  color: black;
+}
+.course-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
