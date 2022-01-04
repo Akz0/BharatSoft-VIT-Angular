@@ -12,7 +12,7 @@ export interface CourseState {
   isLoading: boolean;
   error: string;
 }
-export const initTheoryState: CourseState = {
+export const initCourseState: CourseState = {
   courses: [],
   currentCourse: null,
   currentCourseRows: [],

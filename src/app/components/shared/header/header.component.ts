@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CourseReset } from '../../courses/state/courses.action';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     this.store.dispatch(logout());
+    this.store.dispatch(CourseReset());
     this.router.navigate(['/auth/login']);
   }
 }

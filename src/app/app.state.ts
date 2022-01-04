@@ -14,5 +14,5 @@ export interface AppState {
 export const AppReducer = {
   auth: authReducer,
   shared: sharedReducer,
-  theory: CourseReducer,
+  course: CourseReducer,
 };

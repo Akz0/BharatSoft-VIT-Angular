@@ -20,6 +20,9 @@ import { NewPracticalModalComponent } from './components/shared/new-practical-mo
 import { NewTheoryModalComponent } from './components/shared/new-theory-modal/new-theory-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppReducer } from './app.state';
+import { DeleteCourseModalComponent } from './components/shared/delete-course-modal/delete-course-modal.component';
+import { EditPracticalModalComponent } from './components/shared/edit-practical-modal/edit-practical-modal.component';
+import { EditTheoryModalComponent } from './components/shared/edit-theory-modal/edit-theory-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { AppReducer } from './app.state';
     CourseCardComponent,
     NewPracticalModalComponent,
     NewTheoryModalComponent,
+    DeleteCourseModalComponent,
+    EditPracticalModalComponent,
+    EditTheoryModalComponent,
   ],
   entryComponents: [],
   imports: [

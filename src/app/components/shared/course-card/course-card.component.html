@@ -33,10 +33,19 @@
         </div>
 
     </mat-card-content>
+    <mat-divider></mat-divider>
     <mat-card-actions>
         <div class="course-card__actions">
-            <button mat-raised-button>Details</button>
-            <button mat-button color="warn">Delete</button>
+            <button mat-raised-button>
+                <mat-icon> insert_chart_outlined</mat-icon> &nbsp;
+                Details
+            </button>
+            <button mat-raised-button color="accent" (click)="openEditModal()">
+                <mat-icon>edit</mat-icon> &nbsp; Edit
+            </button>
+            <button mat-button color="warn" (click)="openDeleteModel()">
+                <mat-icon>delete</mat-icon>&nbsp;Delete
+            </button>
         </div>
     </mat-card-actions>
 </mat-card>

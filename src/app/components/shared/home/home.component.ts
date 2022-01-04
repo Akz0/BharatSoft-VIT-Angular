@@ -2,6 +2,7 @@ import {
   CourseAddFail,
   CourseAddSuccess,
   CourseAddStart,
+  CourseReset,
 } from './../../courses/state/courses.action';
 import {
   PracticalCourse,
@@ -39,30 +40,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
   coursesSub: Subscription;
   authSub: Subscription;
+  isCourseLoading$: Observable<boolean>;
 
   authStatus: boolean;
   authToken: string;
   coursesList: any[];
 
-  token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWQwMDBiODhhMDNlMTJkMjdjYzkzNWEiLCJlbWFpbCI6Im9tbGFjaGFrZTAyQGdtYWlsLmNvbSIsIm5hbWUiOiJPbSAiLCJyb2xlIjoiSGVhZCBvZiBEZXBhcnRtZW50IiwiaWF0IjoxNjQxMjEyNjcxLCJleHAiOjE2NDEzODU0NzF9.--J3RDbKia9DuFo8az4tB54dv_jvdiQyVUyKGBGMPY8';
   ngOnInit(): void {
-    this.coursesSub = this.store
-      .select(getCoursesSelector)
-      .subscribe(data => {
-        this.coursesList = data;
-      });
     this.authSub = this.store.select('auth').subscribe(data => {
       this.authToken = data.token;
       this.authStatus = data.isLoggedIn;
       if (!data.isLoggedIn) {
         this.router.navigate(['/auth/login']);
+      } else {
+        this.store.dispatch(CourseReset());
+        this.coursesSub = this.store
+          .select(getCoursesSelector)
+          .subscribe(data => {
+            this.coursesList = data;
+          });
+        this.getTheoryCourses();
+        this.getPracticalCourses();
       }
     });
-    setTimeout(() => {
-      this.getTheoryCourses();
-      this.getPracticalCourses();
-    }, 2);
   }
 
   openNewPracticalDialog() {
@@ -75,74 +75,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dialog.open(NewTheoryModalComponent, {
       id: 'new theory',
     });
-  }
-
-  async addPracticalCourse(practicalCourse: PracticalCourse) {
-    const body = {
-      courseDetails: {
-        ...practicalCourse,
-      },
-    };
-    const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${this.authToken}`,
-      },
-      body: JSON.stringify(body),
-    };
-
-    this.store.dispatch(CourseAddStart());
-    await fetch(
-      'http://localhost:2000/api/practical-course/create',
-      config
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (!data.failed) {
-          const newCourse = data.newCourse;
-          newCourse['type'] = 'Practical';
-          this.store.dispatch(CourseAddSuccess({ newCourse }));
-        } else {
-          const error = data.message;
-          this.store.dispatch(CourseAddFail(error));
-        }
-      })
-      .catch(error => {});
-  }
-
-  async addTheoryCourse(theoryCourse: TheoryCourse) {
-    const body = {
-      courseDetails: {
-        ...theoryCourse,
-      },
-    };
-    const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${this.authToken}`,
-      },
-      body: JSON.stringify(body),
-    };
-
-    this.store.dispatch(CourseAddStart());
-    await fetch(
-      'http://localhost:2000/api/theory-course/create',
-      config
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (!data.failed) {
-          const newCourse = data.newCourse;
-          newCourse['type'] = 'Theory';
-          this.store.dispatch(CourseAddSuccess({ newCourse }));
-        } else {
-          const error = data.message;
-          this.store.dispatch(CourseAddFail(error));
-        }
-      })
-      .catch(error => {});
   }
 
   async getTheoryCourses() {

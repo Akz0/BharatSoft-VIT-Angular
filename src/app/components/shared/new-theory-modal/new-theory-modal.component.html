@@ -1,7 +1,7 @@
 <h2 mat-dialog-title style="text-align:center">Add New Theory Course</h2>
 <mat-dialog-content>
     <div *ngIf="!(isLoading$ | async)">
-        <form [formGroup]="theoryCourse" (ngSubmit)="addTheoryCourse()">
+        <form [formGroup]="theoryCourse" *ngIf="!createResponse" (ngSubmit)="addTheoryCourse()">
             <div class="courses-field-container">
                 <div>
                     <mat-form-field appearance="outline">
@@ -145,6 +145,12 @@
 
             </div>
         </form>
+
+        <div *ngIf="createResponse && createMessage">
+            <p *ngIf="!createStatus" style="color:#D74545">{{createMessage}}</p>
+            <p *ngIf="createStatus" style="color:#4E9A51">{{createMessage}}</p>
+        </div>
+
     </div>
 
 
@@ -156,8 +162,12 @@
 
 
 </mat-dialog-content>
-<mat-dialog-actions align='end'>
+<mat-dialog-actions *ngIf="!createResponse" align='end'>
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-raised-button cdkFocusInitial color="accent" [disabled]="!theoryCourse.valid"
         (click)="addTheoryCourse()">Add</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="createResponse" align='end'>
+    <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

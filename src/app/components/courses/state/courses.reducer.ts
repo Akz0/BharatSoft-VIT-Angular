@@ -11,12 +11,15 @@ import {
   CourseDeleteStart,
   CourseDeleteSuccess,
   CourseDeleteFail,
+  CourseReset,
+  CourseSetCurrentCourse,
+  CourseSetCurrentCourseRow,
 } from './courses.action';
-import { initTheoryState } from './courses.state';
+import { initCourseState } from './courses.state';
 import { createReducer, on } from '@ngrx/store';
 
 const _CourseReducer = createReducer(
-  initTheoryState,
+  initCourseState,
   on(CourseAddStart, state => {
     return {
       ...state,
@@ -113,6 +116,24 @@ const _CourseReducer = createReducer(
       ...state,
       isLoading: false,
       error: action.error,
+    };
+  }),
+  on(CourseReset, (state, action) => {
+    return {
+      ...state,
+      ...initCourseState,
+    };
+  }),
+  on(CourseSetCurrentCourse, (state, action) => {
+    return {
+      ...state,
+      currentCourse: action.currentCourse,
+    };
+  }),
+  on(CourseSetCurrentCourseRow, (state, action) => {
+    return {
+      ...state,
+      currentCourseRows: [...action.currentCourseRows],
     };
   })
 );

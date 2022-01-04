@@ -1,13 +1,14 @@
+import { AUTH_STATE_NAME } from './../state/auth.selectors';
 import {
   loginSuccess,
   loginFail,
   loginStart,
 } from './../state/auth.actions';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 
 @Component({
@@ -15,17 +16,29 @@ import { AppState } from 'src/app/app.state';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   login: FormGroup | any;
-  authLoading$: Observable<boolean>;
+  authLoading: boolean;
+  authSub: Subscription;
+
   loginResponse: boolean;
   loginMessage: string;
+
   constructor(
     private store: Store<AppState>,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.authSub = this.store
+      .select(AUTH_STATE_NAME)
+      .subscribe(data => {
+        if (data.isLoggedIn) {
+          this.router.navigate(['']);
+        }
+        this.authLoading = data.isLoading;
+      });
+
     this.login = new FormGroup({
       email: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
@@ -74,5 +87,11 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch(error => {});
+  }
+
+  ngOnDestroy() {
+    if (this.authSub) {
+      this.authSub.unsubscribe();
+    }
   }
 }

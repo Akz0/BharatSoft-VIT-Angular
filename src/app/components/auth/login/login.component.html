@@ -18,7 +18,7 @@
         </p>
         <button mat-raised-button type="submit" [disabled]="!login.valid" color="accent">Login</button>
         <p style="margin-top: 20px;">
-            <mat-icon *ngIf="authLoading$ | async">
+            <mat-icon *ngIf="authLoading">
                 <mat-spinner color="primary" diameter="20"></mat-spinner>
             </mat-icon>
         </p>

@@ -23,7 +23,8 @@
   font-weight: bold;
   color: black;
 }
-.course-card__actions {
+.course-card__actions,
+.course-card__actions button {
   display: flex;
   align-items: center;
   justify-content: space-between;
