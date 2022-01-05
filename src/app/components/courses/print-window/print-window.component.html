@@ -1,0 +1,459 @@
+<div *ngIf="type==='Theory'">
+
+    <div class="course-details-wrapper">
+        <div class="course-details-container">
+            <div class="detail-row first-row">
+                <div class="detail-row__key">
+                    Course Code
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.courseCode}}
+                </div>
+            </div>
+
+            <div class="detail-row first-row">
+                <div class="detail-row__key">
+                    Course Name
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.courseName}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Academic Year
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.academicYear}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Pattern
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.pattern}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Faculty
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.faculty}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Department
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.department}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Programme
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.programme}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Credits
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.credits}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Semester
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.semester}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Division
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.division}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Course Teacher
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.courseTeacher}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Date WEF
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.dateWEF}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    LTP
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.LTP }}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="plan-container">
+        <div class="course-plan-table-container mat-elevation-z8">
+            <table mat-table [dataSource]="currentCourseRows">
+                <ng-container matColumnDef="unitNo">
+                    <th mat-header-cell *matHeaderCellDef> Unit No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.unitNo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="lectureNo">
+                    <th mat-header-cell *matHeaderCellDef> Lecure No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lectureNo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="topic">
+                    <th mat-header-cell *matHeaderCellDef> Topic </th>
+                    <td mat-cell *matCellDef="let element"> {{element.topic}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="CO">
+                    <th mat-header-cell *matHeaderCellDef> CO </th>
+                    <td mat-cell *matCellDef="let element"> {{element.CO}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="coThreshold">
+                    <th mat-header-cell *matHeaderCellDef> CO Threshold </th>
+                    <td mat-cell *matCellDef="let element"> {{element.coThreshold}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BTL">
+                    <th mat-header-cell *matHeaderCellDef> BTL </th>
+                    <td mat-cell *matCellDef="let element"> {{element.BTL}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="teachingMethod">
+                    <th mat-header-cell *matHeaderCellDef> Teaching Method </th>
+                    <td mat-cell *matCellDef="let element"> {{element.teachingMethod}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="studentActivity">
+                    <th mat-header-cell *matHeaderCellDef> Student Activity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.studentActivity}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="assessmentTool">
+                    <th mat-header-cell *matHeaderCellDef> Assessment Tool </th>
+                    <td mat-cell *matCellDef="let element"> {{element.assessmentTool}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="scheduleA">
+                    <th mat-header-cell *matHeaderCellDef> Schedule A </th>
+                    <td mat-cell *matCellDef="let element"> {{element.scheduleA}} </td>
+                </ng-container>
+                <ng-container matColumnDef="scheduleB">
+                    <th mat-header-cell *matHeaderCellDef>Schedule B </th>
+                    <td mat-cell *matCellDef="let element"> {{element.scheduleB}} </td>
+                </ng-container>
+                <ng-container matColumnDef="scheduleC">
+                    <th mat-header-cell *matHeaderCellDef>Schedule C </th>
+                    <td mat-cell *matCellDef="let element"> {{element.scheduleC}} </td>
+                </ng-container>
+                <ng-container matColumnDef="conductionA">
+                    <th mat-header-cell *matHeaderCellDef> Conduction A </th>
+                    <td mat-cell *matCellDef="let element"> {{element.conductionA}} </td>
+                </ng-container>
+                <ng-container matColumnDef="conductionB">
+                    <th mat-header-cell *matHeaderCellDef>Conduction B </th>
+                    <td mat-cell *matCellDef="let element"> {{element.conductionB}} </td>
+                </ng-container>
+                <ng-container matColumnDef="conductionC">
+                    <th mat-header-cell *matHeaderCellDef> Conduction C </th>
+                    <td mat-cell *matCellDef="let element"> {{element.conductionC}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="deviationReason">
+                    <th mat-header-cell *matHeaderCellDef> Deviation Reason </th>
+                    <td mat-cell *matCellDef="let element"> {{element.deviationReason}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnIdsTheory; sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnIdsTheory;"></tr>
+            </table>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div *ngIf="type==='Practical'">
+
+
+    <div class="course-details-wrapper">
+        <mat-toolbar class="plan-toolbar">
+            <div><a class="title">Course Details</a></div>
+            <span class="spacer"></span>
+            <span class="nav-tool-items">
+                <a mat-button mat-raised-button color="accent">Download PDF</a>&nbsp;
+            </span>
+        </mat-toolbar>
+
+        <div class="course-details-container">
+            <div class="detail-row first-row">
+                <div class="detail-row__key">
+                    Course Code
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.courseCode}}
+                </div>
+            </div>
+
+            <div class="detail-row first-row">
+                <div class="detail-row__key">
+                    Course Name
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.courseName}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Academic Year
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.academicYear}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Pattern
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.pattern}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Faculty
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.faculty}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Department
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.department}}
+
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Programme
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.programme}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Credits
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.credits}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Semester
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.semester}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Division
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.division}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Course Teacher
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.batch}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    Date WEF
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.dateWEF}}
+                </div>
+            </div>
+
+
+            <div class="detail-row">
+                <div class="detail-row__key">
+                    LTP
+                </div>
+                <div class="detail-row__value">
+                    {{currentCourse?.LTP }}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+
+
+
+    <div class="plan-container">
+        <div class="course-plan-table-container mat-elevation-z8">
+            <table mat-table [dataSource]="currentCourseRows">
+
+                <ng-container matColumnDef="practicalNo">
+                    <th mat-header-cell *matHeaderCellDef> Practical No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.practicalNo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nameOfExperiment">
+                    <th mat-header-cell *matHeaderCellDef> Name of Experiment </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nameOfExperiment}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="CO">
+                    <th mat-header-cell *matHeaderCellDef> CO </th>
+                    <td mat-cell *matCellDef="let element"> {{element.CO}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="coThreshold">
+                    <th mat-header-cell *matHeaderCellDef> CO Threshold </th>
+                    <td mat-cell *matCellDef="let element"> {{element.coThreshold}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BTL">
+                    <th mat-header-cell *matHeaderCellDef> BTL </th>
+                    <td mat-cell *matCellDef="let element"> {{element.BTL}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="teachingMethod">
+                    <th mat-header-cell *matHeaderCellDef> Teaching Method </th>
+                    <td mat-cell *matCellDef="let element"> {{element.teachingMethod}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="studentActivity">
+                    <th mat-header-cell *matHeaderCellDef> Student Activity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.studentActivity}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="assessmentTool">
+                    <th mat-header-cell *matHeaderCellDef> Assessment Tool </th>
+                    <td mat-cell *matCellDef="let element"> {{element.assessmentTool}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="scheduleA">
+                    <th mat-header-cell *matHeaderCellDef> Schedule A </th>
+                    <td mat-cell *matCellDef="let element"> {{element.scheduleA}} </td>
+                </ng-container>
+                <ng-container matColumnDef="scheduleB">
+                    <th mat-header-cell *matHeaderCellDef>Schedule B </th>
+                    <td mat-cell *matCellDef="let element"> {{element.scheduleB}} </td>
+                </ng-container>
+                <ng-container matColumnDef="scheduleC">
+                    <th mat-header-cell *matHeaderCellDef>Schedule C </th>
+                    <td mat-cell *matCellDef="let element"> {{element.scheduleC}} </td>
+                </ng-container>
+                <ng-container matColumnDef="conductionA">
+                    <th mat-header-cell *matHeaderCellDef> Conduction A </th>
+                    <td mat-cell *matCellDef="let element"> {{element.conductionA}} </td>
+                </ng-container>
+                <ng-container matColumnDef="conductionB">
+                    <th mat-header-cell *matHeaderCellDef>Conduction B </th>
+                    <td mat-cell *matCellDef="let element"> {{element.conductionB}} </td>
+                </ng-container>
+                <ng-container matColumnDef="conductionC">
+                    <th mat-header-cell *matHeaderCellDef> Conduction C </th>
+                    <td mat-cell *matCellDef="let element"> {{element.conductionC}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="deviationReason">
+                    <th mat-header-cell *matHeaderCellDef> Deviation Reason </th>
+                    <td mat-cell *matCellDef="let element"> {{element.deviationReason}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnIdsPractical; sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnIdsPractical;"></tr>
+            </table>
+        </div>
+
+
+    </div>
+</div>

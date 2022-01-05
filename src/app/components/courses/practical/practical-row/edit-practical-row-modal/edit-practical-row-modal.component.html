@@ -1,0 +1,172 @@
+<h2 mat-dialog-title style="text-align:center">Edit Plan</h2>
+<mat-dialog-content>
+
+    <div>
+        <form [formGroup]=" practicalCourseRow" *ngIf="!createResponse" (ngSubmit)="addPracticalCourseRow()">
+            <div class="courses-field-container">
+
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label> Practical Number</mat-label>
+                        <input matInput type="text" formControlName="practicalNo">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('practicalNo').errors && practicalCourseRow.get('practicalNo').errors.required">
+                            Practical Number Required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Name of Experiment </mat-label>
+                        <input matInput type="text" formControlName="nameOfExperiment">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('nameOfExperiment').errors && practicalCourseRow.get('nameOfExperiment').errors.required">
+                            Name of Experiment
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> CO </mat-label>
+                        <input matInput type="text" formControlName="CO">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('CO').errors && practicalCourseRow.get('CO').errors.required">
+                            CO Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> CO Threshold </mat-label>
+                        <input matInput type="text" formControlName="coThreshold">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('coThreshold').errors && practicalCourseRow.get('coThreshold').errors.required">
+                            CO Threshold Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> BTL </mat-label>
+                        <input matInput type="text" formControlName="BTL">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('BTL').errors && practicalCourseRow.get('BTL').errors.required">
+                            BTL Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Teaching Method </mat-label>
+                        <input matInput type="text" formControlName="teachingMethod">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('teachingMethod').errors && practicalCourseRow.get('teachingMethod').errors.required">
+                            Teaching Method Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Student Activity </mat-label>
+                        <input matInput type="text" formControlName="studentActivity">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('studentActivity').errors && practicalCourseRow.get('studentActivity').errors.required">
+                            Student Activity
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Assessment Tool </mat-label>
+                        <input matInput type="text" formControlName="assessmentTool">
+                        <mat-error
+                            *ngIf="practicalCourseRow.get('assessmentTool').errors && practicalCourseRow.get('assessmentTool').errors.required">
+                            Assessment Tool Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Schedule : Division A</mat-label>
+                        <input matInput type="text" formControlName="scheduleA">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Schedule : Division B</mat-label>
+                        <input matInput type="text" formControlName="scheduleB">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Schedule : Division C</mat-label>
+                        <input matInput type="text" formControlName="scheduleC">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Conduction : Division A</mat-label>
+                        <input matInput type="text" formControlName="conductionA">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Conduction : Division B</mat-label>
+                        <input matInput type="text" formControlName="conductionB">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Conduction : Division C</mat-label>
+                        <input matInput type="text" formControlName="conductionC">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Deviation Reason </mat-label>
+                        <input matInput type="text" formControlName="deviationReason">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="createResponse && createMessage">
+            <p *ngIf="!createStatus" style="color:#D74545">{{createMessage}}</p>
+            <p *ngIf="createStatus" style="color:#4E9A51">{{createMessage}}</p>
+        </div>
+
+    </div>
+
+
+    <div *ngIf="(isLoading$ | async)">
+        <mat-icon>
+            <mat-progress-spinner></mat-progress-spinner>
+        </mat-icon>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="!createResponse" align='end'>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button cdkFocusInitial color="accent" [disabled]="!practicalCourseRow.valid"
+        (click)="addPracticalCourseRow()">Save</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="createResponse" align='end'>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

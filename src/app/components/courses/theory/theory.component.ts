@@ -1,4 +1,6 @@
 import { CourseGetFail } from './../state/courses.action';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import {
   TheoryCourse,
   TheoryCourseRow,
@@ -28,6 +30,7 @@ export class TheoryComponent implements OnInit {
 
   coursesSub: Subscription;
   currentCourse: TheoryCourse | any;
+  currentCourseRows: TheoryCourseRow[] | any;
   isLoading: boolean;
   constructor(
     private store: Store<AppState>,
@@ -47,6 +50,7 @@ export class TheoryComponent implements OnInit {
             .subscribe(data => {
               this.currentCourse = data.currentCourse;
               this.isLoading = data.isLoading;
+              this.currentCourseRows = data.currentCourseRows;
             });
           if (this.currentCourse.courseCode) {
             this.getCurrentCourseRows(this.currentCourse.courseCode);
@@ -81,5 +85,42 @@ export class TheoryComponent implements OnInit {
         }
       })
       .catch(error => {});
+  }
+
+  downloadTablePDF() {
+    const dataHeads = [
+      'Unit No.',
+      'Lecure No.',
+      'Topic',
+      'CO',
+      'CO Threshold',
+      'BTL',
+      'Teaching Method',
+      'Student Activity',
+      'Assessment Tool',
+      'Schedule A',
+      'Schedule B',
+      'Schedule C',
+      'Conduction A',
+      'Conduction B',
+      'Conduction C',
+      'Deviation Reason',
+    ];
+
+    const data = this.currentCourseRows;
+
+    const doc = new jsPDF();
+    doc.setFontSize(18);
+    doc.text('My PDF Table', 11, 8);
+    doc.setFontSize(11);
+    doc.setTextColor(100);
+    (doc as any).autoTable({
+      html: '#theory-table',
+      theme: 'grid',
+      didDrawCell: (data: { column: { index: any } }) => {
+        console.log(data.column.index);
+      },
+    });
+    doc.output('dataurlnewwindow');
   }
 }

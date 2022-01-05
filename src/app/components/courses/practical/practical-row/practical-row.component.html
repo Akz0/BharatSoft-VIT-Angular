@@ -1,1 +1,110 @@
-<p>practical-row works!</p>
+<div class="plan-container">
+    <div class="plan-toolbar-container">
+        <mat-toolbar class="plan-toolbar">
+            <div><a class="title">Course Plan</a></div>
+            <span class="spacer"></span>
+            <span class="nav-tool-items">
+                <a mat-button mat-raised-button (click)="openTheoryRowNewDialog()">Add New Row</a>&nbsp;
+            </span>
+        </mat-toolbar>
+    </div>
+
+    <div class="course-plan-table-container mat-elevation-z8">
+        <table mat-table [dataSource]="currentCourseRows">
+
+            <ng-container matColumnDef="delete" sticky>
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="warn"
+                        (click)="openDeleteDialog(element._id,element.nameOfExperiment)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit" sticky>
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="accent" (click)="openPracticalRowEditDialog(element._id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="practicalNo">
+                <th mat-header-cell *matHeaderCellDef> Practical No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.practicalNo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nameOfExperiment">
+                <th mat-header-cell *matHeaderCellDef> Name of Experiment </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfExperiment}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CO">
+                <th mat-header-cell *matHeaderCellDef> CO </th>
+                <td mat-cell *matCellDef="let element"> {{element.CO}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="coThreshold">
+                <th mat-header-cell *matHeaderCellDef> CO Threshold </th>
+                <td mat-cell *matCellDef="let element"> {{element.coThreshold}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="BTL">
+                <th mat-header-cell *matHeaderCellDef> BTL </th>
+                <td mat-cell *matCellDef="let element"> {{element.BTL}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="teachingMethod">
+                <th mat-header-cell *matHeaderCellDef> Teaching Method </th>
+                <td mat-cell *matCellDef="let element"> {{element.teachingMethod}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="studentActivity">
+                <th mat-header-cell *matHeaderCellDef> Student Activity </th>
+                <td mat-cell *matCellDef="let element"> {{element.studentActivity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assessmentTool">
+                <th mat-header-cell *matHeaderCellDef> Assessment Tool </th>
+                <td mat-cell *matCellDef="let element"> {{element.assessmentTool}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="scheduleA">
+                <th mat-header-cell *matHeaderCellDef> Schedule A </th>
+                <td mat-cell *matCellDef="let element"> {{element.scheduleA}} </td>
+            </ng-container>
+            <ng-container matColumnDef="scheduleB">
+                <th mat-header-cell *matHeaderCellDef>Schedule B </th>
+                <td mat-cell *matCellDef="let element"> {{element.scheduleB}} </td>
+            </ng-container>
+            <ng-container matColumnDef="scheduleC">
+                <th mat-header-cell *matHeaderCellDef>Schedule C </th>
+                <td mat-cell *matCellDef="let element"> {{element.scheduleC}} </td>
+            </ng-container>
+            <ng-container matColumnDef="conductionA">
+                <th mat-header-cell *matHeaderCellDef> Conduction A </th>
+                <td mat-cell *matCellDef="let element"> {{element.conductionA}} </td>
+            </ng-container>
+            <ng-container matColumnDef="conductionB">
+                <th mat-header-cell *matHeaderCellDef>Conduction B </th>
+                <td mat-cell *matCellDef="let element"> {{element.conductionB}} </td>
+            </ng-container>
+            <ng-container matColumnDef="conductionC">
+                <th mat-header-cell *matHeaderCellDef> Conduction C </th>
+                <td mat-cell *matCellDef="let element"> {{element.conductionC}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="deviationReason">
+                <th mat-header-cell *matHeaderCellDef> Deviation Reason </th>
+                <td mat-cell *matCellDef="let element"> {{element.deviationReason}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnIds; sticky:true"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnIds;"></tr>
+        </table>
+    </div>
+
+
+</div>

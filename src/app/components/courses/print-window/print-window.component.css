@@ -7,25 +7,11 @@
   flex-direction: column;
 }
 
-.plan-toolbar-container {
-  width: 100%;
-  height: 50px;
-  margin-bottom: 30px;
-}
-.plan-toolbar {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: white;
-}
-
 .course-plan-table-container {
   margin-top: 40px;
   margin-bottom: 50px;
-  width: 1300px;
+  width: 950px;
+  max-width: 1000px;
   overflow: scroll;
   display: flex;
   justify-content: center;
@@ -40,10 +26,8 @@
 .mat-header-cell,
 .mat-cell {
   border-right: 1px solid rgb(196, 196, 196);
-  padding: 0 10px;
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 28% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: keep-all;
@@ -52,39 +36,33 @@
   -webkit-hyphens: auto;
   hyphens: auto;
   text-align: center;
+  font-size: 10px;
 }
 .mat-header-cell {
-  color: white;
-  background-color: #3f51b5;
-}
-.mat-cell {
-  font-size: 13px;
-}
-/* For Specific Columns */
-.mat-column-delete,
-.mat-column-edit {
-  border-right: 1px solid grey;
-  width: 1% !important;
-  flex: 0 0 1% !important;
-  padding: 0;
-}
-.mat-column-edit {
-  border-right: none;
+  color: black;
 }
 
+/* For Specific Columns */
+.mat-column-unitNo,
+.mat-column-lectureNo,
 .mat-column-practicalNo,
 .mat-column-CO {
   width: 4%;
   padding: 0 5px;
+  padding-right: 10px;
 }
-
 .mat-column-nameOfExperiment {
-  width: 10%;
+  width: 15%;
+  padding: 0 5px;
+}
+.mat-column-topic {
+  width: 15%;
   padding: 0 5px;
 }
 
 .mat-column-coThreshold {
   width: 5%;
+  padding: 0 2px;
 }
 .mat-column-BTL {
   width: 5%;
@@ -94,11 +72,8 @@
 .mat-column-studentActivity,
 .mat-column-assessmentTool,
 .mat-column-deviattionReason {
-  width: 7%;
-  padding: 0 5px;
-}
-.mat-column-deviattionReason {
-  width: 5%;
+  width: 10%;
+  padding: 0 15px;
 }
 
 .mat-column-scheduleA,
@@ -110,4 +85,61 @@
   padding: 0 5px;
   width: 5% !important;
   max-width: 5% !important;
+}
+
+.course-details-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.course-details-container {
+  margin: 50px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 49.8%;
+  min-width: 350px;
+  height: 35px;
+  text-align: left;
+}
+.detail-row__key,
+.detail-row__value {
+  padding-left: 20px;
+  text-align: left;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  font-size: 12px;
+}
+.detail-row__value:nth-child(even) {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+.detail-row__value:first-child {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+.detail-row__key:nth-child(1) {
+  border-left: 1px solid grey;
+}
+.first-row {
+  border-top: 1px solid grey;
+}
+.detail-row__key {
+  width: 30%;
+  height: 100%;
+}
+
+.divider {
+  border: 1px solid red;
 }

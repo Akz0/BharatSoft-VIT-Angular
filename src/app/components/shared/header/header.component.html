@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="app-header">
+<mat-toolbar color="primary" class="app-header" *ngIf="routeValid">
     <div><a class="title">VIT Course Planner</a></div>
     <span class="spacer"></span>
     <span *ngIf="!(isLoggedIn$ |async )" class="nav-tool-items">

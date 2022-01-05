@@ -2,8 +2,6 @@ import { EditRowModalComponent } from './edit-row-modal/edit-row-modal.component
 import {
   COURSE_STATE_NAME,
   getCourseLoadingSelector,
-  getCurrentRowSelector,
-  getCurretCourseRowsSelector,
 } from './../../state/courses.selecrors';
 import {
   PracticalCourseRow,
