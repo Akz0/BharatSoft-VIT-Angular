@@ -1,3 +1,5 @@
+import { CourseGetFail } from './../../courses/state/courses.action';
+import { Router } from '@angular/router';
 import { EditPracticalModalComponent } from './../edit-practical-modal/edit-practical-modal.component';
 import { EditTheoryModalComponent } from './../edit-theory-modal/edit-theory-modal.component';
 import { Store } from '@ngrx/store';
@@ -7,7 +9,12 @@ import { PracticalCourse } from './../../courses/state/courses.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { TheoryCourse } from '../../courses/state/courses.model';
 import { AppState } from 'src/app/app.state';
-import { CourseSetCurrentCourse } from '../../courses/state/courses.action';
+import {
+  CourseRowStart,
+  CourseRowSuccess,
+  CourseSetCurrentCourse,
+} from '../../courses/state/courses.action';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-card',
@@ -16,10 +23,13 @@ import { CourseSetCurrentCourse } from '../../courses/state/courses.action';
 })
 export class CourseCardComponent implements OnInit {
   @Input() course: TheoryCourse | PracticalCourse;
+  routerLink: string;
+  @Input() authToken: string;
 
   constructor(
     private dialog: MatDialog,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
   ngOnInit(): void {}
 
@@ -48,5 +58,11 @@ export class CourseCardComponent implements OnInit {
         id: 'edit pracical course',
       });
     }
+  }
+
+  openDetails() {
+    this.store.dispatch(
+      CourseSetCurrentCourse({ currentCourse: this.course })
+    );
   }
 }

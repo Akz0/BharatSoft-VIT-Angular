@@ -14,6 +14,10 @@ import {
   CourseReset,
   CourseSetCurrentCourse,
   CourseSetCurrentCourseRow,
+  CourseSetCurrentRow,
+  CourseRowStart,
+  CourseRowSuccess,
+  CourseRowFail,
 } from './courses.action';
 import { initCourseState } from './courses.state';
 import { createReducer, on } from '@ngrx/store';
@@ -128,12 +132,46 @@ const _CourseReducer = createReducer(
     return {
       ...state,
       currentCourse: action.currentCourse,
+      isLoading: false,
+      error: '',
     };
   }),
   on(CourseSetCurrentCourseRow, (state, action) => {
     return {
       ...state,
       currentCourseRows: [...action.currentCourseRows],
+      isLoading: false,
+      error: '',
+    };
+  }),
+  on(CourseSetCurrentRow, (state, action) => {
+    return {
+      ...state,
+      currentRow: action.currentRow,
+      isLoading: false,
+      error: '',
+    };
+  }),
+  on(CourseRowStart, state => {
+    return {
+      ...state,
+      isLoading: true,
+      error: '',
+    };
+  }),
+  on(CourseRowSuccess, (state, action) => {
+    return {
+      ...state,
+      currentCourseRows: action.newCoursePlan,
+      isLoading: false,
+      error: '',
+    };
+  }),
+  on(CourseRowFail, (state, action) => {
+    return {
+      ...state,
+      error: action.error,
+      isLoading: false,
     };
   })
 );

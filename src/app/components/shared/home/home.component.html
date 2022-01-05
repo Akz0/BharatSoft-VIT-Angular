@@ -15,7 +15,7 @@
 
     <div *ngIf="coursesList" class="courses-container">
         <div *ngFor="let item of coursesList" class="course">
-            <app-course-card [course]="item">Hello</app-course-card>
+            <app-course-card [authToken]="authToken" [course]="item">Hello</app-course-card>
         </div>
     </div>
 </div>

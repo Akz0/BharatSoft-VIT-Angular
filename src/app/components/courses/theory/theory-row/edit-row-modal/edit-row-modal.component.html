@@ -1,0 +1,178 @@
+<h2 mat-dialog-title style="text-align:center">Edit Plan</h2>
+<mat-dialog-content>
+
+    <div>
+        <form [formGroup]=" theoryCourseRow" *ngIf="!createResponse" (ngSubmit)="addTheoryCourseRow()">
+            <div class="courses-field-container">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label> Unit No</mat-label>
+                        <input matInput type="text" formControlName="unitNo">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('unitNo').errors && theoryCourseRow.get('unitNo').errors.required">
+                            Unit Number Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label> Lecture Number </mat-label>
+                        <input matInput type="text" formControlName="lectureNo">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('lectureNo').errors  && theoryCourseRow.get('lectureNo').errors.required">
+                            Lecture Number Required </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Topic </mat-label>
+                        <input matInput type="text" formControlName="topic">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('topic').errors && theoryCourseRow.get('topic').errors.required">
+                            Topic Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> CO </mat-label>
+                        <input matInput type="text" formControlName="CO">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('CO').errors && theoryCourseRow.get('CO').errors.required">
+                            CO Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> CO Threshold </mat-label>
+                        <input matInput type="text" formControlName="coThreshold">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('coThreshold').errors && theoryCourseRow.get('coThreshold').errors.required">
+                            CO Threshold Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> BTL </mat-label>
+                        <input matInput type="text" formControlName="BTL">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('BTL').errors && theoryCourseRow.get('BTL').errors.required">
+                            BTL Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Teaching Method </mat-label>
+                        <input matInput type="text" formControlName="teachingMethod">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('teachingMethod').errors && theoryCourseRow.get('teachingMethod').errors.required">
+                            Teaching Method Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Student Activity </mat-label>
+                        <input matInput type="text" formControlName="studentActivity">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('studentActivity').errors && theoryCourseRow.get('studentActivity').errors.required">
+                            Student Activity
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Assessment Tool </mat-label>
+                        <input matInput type="text" formControlName="assessmentTool">
+                        <mat-error
+                            *ngIf="theoryCourseRow.get('assessmentTool').errors && theoryCourseRow.get('assessmentTool').errors.required">
+                            Assessment Tool Reqruied
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Schedule : Division A</mat-label>
+                        <input matInput type="text" formControlName="scheduleA">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Schedule : Division B</mat-label>
+                        <input matInput type="text" formControlName="scheduleB">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Schedule : Division C</mat-label>
+                        <input matInput type="text" formControlName="scheduleC">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Conduction : Division A</mat-label>
+                        <input matInput type="text" formControlName="conductionA">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Conduction : Division B</mat-label>
+                        <input matInput type="text" formControlName="conductionB">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Conduction : Division C</mat-label>
+                        <input matInput type="text" formControlName="conductionC">
+                    </mat-form-field>
+                </div>
+
+                <div class="">
+                    <mat-form-field appearance="outline">
+                        <mat-label> Deviation Reason </mat-label>
+                        <input matInput type="text" formControlName="deviationReason">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="createResponse && createMessage">
+            <p *ngIf="!createStatus" style="color:#D74545">{{createMessage}}</p>
+            <p *ngIf="createStatus" style="color:#4E9A51">{{createMessage}}</p>
+        </div>
+
+    </div>
+
+
+    <div *ngIf="(isLoading$ | async)">
+        <mat-icon>
+            <mat-progress-spinner></mat-progress-spinner>
+        </mat-icon>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="!createResponse" align='end'>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button cdkFocusInitial color="accent" [disabled]="!theoryCourseRow.valid"
+        (click)="addTheoryCourseRow()">Add</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="createResponse" align='end'>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

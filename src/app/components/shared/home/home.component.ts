@@ -1,17 +1,9 @@
-import {
-  CourseAddFail,
-  CourseAddSuccess,
-  CourseAddStart,
-  CourseReset,
-} from './../../courses/state/courses.action';
+import { AUTH_STATE_NAME } from './../../auth/state/auth.selectors';
+import { CourseReset } from './../../courses/state/courses.action';
 import {
   PracticalCourse,
   TheoryCourse,
 } from './../../courses/state/courses.model';
-import {
-  getAuthStatus,
-  getAuthToken,
-} from './../../auth/state/auth.selectors';
 
 import { Store } from '@ngrx/store';
 import { NewTheoryModalComponent } from './../new-theory-modal/new-theory-modal.component';
@@ -47,22 +39,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   coursesList: any[];
 
   ngOnInit(): void {
-    this.authSub = this.store.select('auth').subscribe(data => {
-      this.authToken = data.token;
-      this.authStatus = data.isLoggedIn;
-      if (!data.isLoggedIn) {
-        this.router.navigate(['/auth/login']);
-      } else {
-        this.store.dispatch(CourseReset());
-        this.coursesSub = this.store
-          .select(getCoursesSelector)
-          .subscribe(data => {
-            this.coursesList = data;
-          });
-        this.getTheoryCourses();
-        this.getPracticalCourses();
-      }
-    });
+    this.authSub = this.store
+      .select(AUTH_STATE_NAME)
+      .subscribe(data => {
+        this.authToken = data.token;
+        this.authStatus = data.isLoggedIn;
+        if (!data.isLoggedIn) {
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.store.dispatch(CourseReset());
+          this.coursesSub = this.store
+            .select(getCoursesSelector)
+            .subscribe(data => {
+              this.coursesList = data;
+            });
+          this.getTheoryCourses();
+          this.getPracticalCourses();
+        }
+      });
   }
 
   openNewPracticalDialog() {

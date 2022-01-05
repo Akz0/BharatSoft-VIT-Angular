@@ -73,16 +73,27 @@ export const CourseReset = createAction(COURSE_RESET);
 // Set Current Courses
 export const COURSE_SET_CURRENT_COURSE =
   '[COURSE] set current course';
-export const COURSE_SET_CURRENT_COURSE_ROW =
-  '[COURSE] set current course row';
+
 export const COURSE_RESET_CURRENT_COURSE =
   '[COURSE] reset current course';
-
 export const CourseSetCurrentCourse = createAction(
   COURSE_SET_CURRENT_COURSE,
   props<{ currentCourse: TheoryCourse | PracticalCourse }>()
 );
 
+export const CourseResetCurrentCourse = createAction(
+  COURSE_RESET_CURRENT_COURSE
+);
+
+// Course Rows / Plan
+
+export const COURSE_SET_CURRENT_ROW = '[COURSE] set current row';
+export const COURSE_SET_CURRENT_COURSE_ROW =
+  '[COURSE] set current course row';
+export const CourseSetCurrentRow = createAction(
+  COURSE_SET_CURRENT_ROW,
+  props<{ currentRow: TheoryCourseRow | PracticalCourseRow }>()
+);
 export const CourseSetCurrentCourseRow = createAction(
   COURSE_SET_CURRENT_COURSE_ROW,
   props<{
@@ -90,6 +101,21 @@ export const CourseSetCurrentCourseRow = createAction(
   }>()
 );
 
-export const CourseResetCurrentCourse = createAction(
-  COURSE_RESET_CURRENT_COURSE
+// Add Courses
+export const COURSE_CURRENT_COURSE_ROW_START =
+  '[COURSE]  current course row start';
+export const COURSE_CURRENT_COURSE_ROW_FAIL =
+  '[COURSE]  current course row fail';
+export const COURSE_CURRENT_COURSE_ROW_SUCCESS =
+  '[COURSE] current course row success';
+export const CourseRowStart = createAction(
+  COURSE_CURRENT_COURSE_ROW_START
+);
+export const CourseRowSuccess = createAction(
+  COURSE_CURRENT_COURSE_ROW_SUCCESS,
+  props<{ newCoursePlan: (TheoryCourseRow | PracticalCourseRow)[] }>()
+);
+export const CourseRowFail = createAction(
+  COURSE_CURRENT_COURSE_ROW_FAIL,
+  props<{ error: string }>()
 );

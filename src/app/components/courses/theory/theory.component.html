@@ -1,0 +1,145 @@
+<div class="course-details-wrapper">
+    <mat-toolbar class="plan-toolbar">
+        <div><a class="title">Course Details</a></div>
+        <span class="spacer"></span>
+        <span class="nav-tool-items">
+            <a mat-button mat-raised-button color="accent">Download PDF</a>&nbsp;
+        </span>
+    </mat-toolbar>
+
+    <div class="course-details-container">
+        <div class="detail-row first-row">
+            <div class="detail-row__key">
+                Course Code
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.courseCode}}
+            </div>
+        </div>
+
+        <div class="detail-row first-row">
+            <div class="detail-row__key">
+                Course Name
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.courseName}}
+
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Academic Year
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.academicYear}}
+
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Pattern
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.pattern}}
+
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Faculty
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.faculty}}
+
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Department
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.department}}
+
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Programme
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.programme}}
+            </div>
+        </div>
+
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Credits
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.credits}}
+            </div>
+        </div>
+
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Semester
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.semester}}
+            </div>
+        </div>
+
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Division
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.division}}
+            </div>
+        </div>
+
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Course Teacher
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.courseTeacher}}
+            </div>
+        </div>
+
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                Date WEF
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.dateWEF}}
+            </div>
+        </div>
+
+
+        <div class="detail-row">
+            <div class="detail-row__key">
+                LTP
+            </div>
+            <div class="detail-row__value">
+                {{currentCourse?.LTP }}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<mat-divider></mat-divider>
+
+<app-theory-row> </app-theory-row>

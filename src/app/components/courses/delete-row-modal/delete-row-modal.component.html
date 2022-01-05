@@ -1,0 +1,28 @@
+<h2 mat-dialog-title style="text-align:center">Delete Plan</h2>
+<mat-dialog-content>
+    <div *ngIf="!(isLoading$ | async)">
+        <div *ngIf="deleteResponse && deleteMessage">
+            <p *ngIf="!deleteStatus" style="color:#D74545">{{deleteMessage}}</p>
+            <p *ngIf="deleteStatus" style="color:#4E9A51">{{deleteMessage}}</p>
+        </div>
+        <div *ngIf="!deleteResponse">
+            Are you sure you want to delete Row for
+            <strong>"{{topic}}"</strong>
+        </div>
+    </div>
+    <div *ngIf="(isLoading$ | async)">
+        <mat-icon>
+            <mat-progress-spinner></mat-progress-spinner>
+        </mat-icon>
+    </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="!deleteResponse" align='end'>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button cdkFocusInitial color="warn" (click)="deletePlan()">Delete</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="deleteResponse" align='end'>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

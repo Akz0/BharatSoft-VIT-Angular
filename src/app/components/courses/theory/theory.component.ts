@@ -1,0 +1,85 @@
+import { CourseGetFail } from './../state/courses.action';
+import {
+  TheoryCourse,
+  TheoryCourseRow,
+} from './../state/courses.model';
+import { COURSE_STATE_NAME } from './../state/courses.selecrors';
+import { Router } from '@angular/router';
+import { AUTH_STATE_NAME } from './../../auth/state/auth.selectors';
+import { Store } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core';
+import { AppState } from 'src/app/app.state';
+import { Subscription } from 'rxjs';
+import {
+  CourseRowFail,
+  CourseRowStart,
+  CourseRowSuccess,
+} from '../state/courses.action';
+
+@Component({
+  selector: 'app-theory',
+  templateUrl: './theory.component.html',
+  styleUrls: ['./theory.component.css'],
+})
+export class TheoryComponent implements OnInit {
+  authSub: Subscription;
+  authToken: string;
+  authStatus: boolean;
+
+  coursesSub: Subscription;
+  currentCourse: TheoryCourse | any;
+  isLoading: boolean;
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.authSub = this.store
+      .select(AUTH_STATE_NAME)
+      .subscribe(data => {
+        this.authToken = data.token;
+        this.authStatus = data.isLoggedIn;
+        if (!data.isLoggedIn) {
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.coursesSub = this.store
+            .select(COURSE_STATE_NAME)
+            .subscribe(data => {
+              this.currentCourse = data.currentCourse;
+              this.isLoading = data.isLoading;
+            });
+          if (this.currentCourse.courseCode) {
+            this.getCurrentCourseRows(this.currentCourse.courseCode);
+          }
+        }
+      });
+  }
+
+  async getCurrentCourseRows(courseCode: string | any) {
+    const config = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${this.authToken}`,
+      },
+    };
+    this.store.dispatch(CourseRowStart());
+    await fetch(
+      'http://localhost:2000/api/theory-course/plan/' + courseCode,
+      config
+    )
+      .then(response => response.json())
+      .then(data => {
+        if (!data.failed) {
+          const currentCourseRows = data.coursePlanRows;
+          this.store.dispatch(
+            CourseRowSuccess({ newCoursePlan: currentCourseRows })
+          );
+        } else {
+          const error = data.message;
+          this.store.dispatch(CourseRowFail(error));
+        }
+      })
+      .catch(error => {});
+  }
+}

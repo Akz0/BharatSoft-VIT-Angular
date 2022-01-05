@@ -28,6 +28,13 @@ export const getCurretCourseRowsSelector = createSelector(
     };
   }
 );
+
+export const getCurrentRowSelector = createSelector(
+  getCourseState,
+  state => {
+    return { currentRow: state.currentRow };
+  }
+);
 export const getCourseLoadingSelector = createSelector(
   getCourseState,
   state => state.isLoading

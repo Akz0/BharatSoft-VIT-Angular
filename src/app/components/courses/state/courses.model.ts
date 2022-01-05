@@ -25,22 +25,13 @@ export interface TheoryCourseRow {
   teachingMethod: string;
   studentActivity: string;
   assessmentTool: string;
-  scheduleDate?: {
-    divisions?: [
-      {
-        divName?: string;
-        divisionDate?: string;
-      }
-    ];
-  };
-  conductionDate?: {
-    divisions?: [
-      {
-        divName?: string;
-        divisionDate?: string;
-      }
-    ];
-  };
+  scheduleA?: string;
+  scheduleB?: string;
+  scheduleC?: string;
+  conductiionA?: string;
+  conductiionB?: string;
+  conductiionC?: string;
+  deviationReason?: string;
 }
 
 export interface PracticalCourse {
@@ -69,20 +60,11 @@ export interface PracticalCourseRow {
   teachingMethod: string;
   studentActivity: string;
   assessmentTool: string;
-  scheduleDate?: {
-    divisions?: [
-      {
-        divName?: string;
-        divisionDate?: string;
-      }
-    ];
-  };
-  conductionDate?: {
-    divisions?: [
-      {
-        divName?: string;
-        divisionDate?: string;
-      }
-    ];
-  };
+  scheduleA?: string;
+  scheduleB?: string;
+  scheduleC?: string;
+  conductiionA?: string;
+  conductiionB?: string;
+  conductiionC?: string;
+  deviationReason?: string;
 }

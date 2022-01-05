@@ -1,4 +1,3 @@
-import { CoursesModule } from './components/courses/courses.module';
 import { environment } from './../environments/environment';
 import { AngularMaterialModule } from './components/shared/material/material.module';
 import { NgModule } from '@angular/core';
@@ -23,6 +22,7 @@ import { AppReducer } from './app.state';
 import { DeleteCourseModalComponent } from './components/shared/delete-course-modal/delete-course-modal.component';
 import { EditPracticalModalComponent } from './components/shared/edit-practical-modal/edit-practical-modal.component';
 import { EditTheoryModalComponent } from './components/shared/edit-theory-modal/edit-theory-modal.component';
+import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +36,12 @@ import { EditTheoryModalComponent } from './components/shared/edit-theory-modal/
     DeleteCourseModalComponent,
     EditPracticalModalComponent,
     EditTheoryModalComponent,
+    PageNotFoundComponent,
   ],
   entryComponents: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
     FlexLayoutModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
@@ -51,7 +51,6 @@ import { EditTheoryModalComponent } from './components/shared/edit-theory-modal/
       logOnly: environment.production,
     }),
     HttpClientModule,
-    CoursesModule,
     FormsModule,
     ReactiveFormsModule,
   ],

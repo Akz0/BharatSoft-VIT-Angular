@@ -36,10 +36,16 @@
     <mat-divider></mat-divider>
     <mat-card-actions>
         <div class="course-card__actions">
-            <button mat-raised-button>
+            <a *ngIf="course.type==='Practical'" (click)="openDetails()" mat-raised-button
+                routerLink="/courses/details/practical">
                 <mat-icon> insert_chart_outlined</mat-icon> &nbsp;
                 Details
-            </button>
+            </a>
+            <a *ngIf="course.type==='Theory'" (click)="openDetails()" mat-raised-button
+                routerLink="/courses/details/theory">
+                <mat-icon> insert_chart_outlined</mat-icon> &nbsp;
+                Details
+            </a>
             <button mat-raised-button color="accent" (click)="openEditModal()">
                 <mat-icon>edit</mat-icon> &nbsp; Edit
             </button>
